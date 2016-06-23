@@ -105,9 +105,9 @@ module Sublime2yas
         "${2:$TM_SELECTED_TEXT}"                 => "${2:`yas-selected-text`}",
         '$TM_SELECTED_TEXT'                     => "`yas-selected-text`",
         %r'\$\{TM_SELECTED_TEXT:([^\}]*)\}'       => "`(or (yas-selected-text) \"\\1\")`",
-        %r'`[^`]+\n[^`]`'                        => Proc.new {|uuid, match| "(yas-multi-line-unknown " + uuid + ")"}},
+      %r'`[^`]+\n[^`]`'                        => Proc.new {|uuid, match| "(yas-multi-line-unknown " + uuid + ")"}},
       "condition" => {
-        /^source\..*$/ => "" },
+      /^source\..*$/ => "" },
       "binding"   => {},
       "type"      => {}
     }
@@ -140,7 +140,8 @@ module Sublime2yas
     end
 
     def name
-      (@snippet.xpath "//description").text
+      # (@snippet.xpath "//description").text
+      (@snippet.xpath "//tabTrigger").text
     end
 
     def uuid
